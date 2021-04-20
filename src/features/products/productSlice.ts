@@ -5,10 +5,8 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (thunkAPI) => {
     try {
-      const response = await axios.get(
-        "https://fakerapi.it/api/v1/products?_quantity=20&_taxes=1&_categories_type=string"
-      );
-      return response.data.data;
+      const response = await axios.get("https://fakestoreapi.com/products");
+      return response.data;
     } catch (error) {
       return error;
     }

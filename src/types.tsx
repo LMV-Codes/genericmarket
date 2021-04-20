@@ -1,18 +1,8 @@
-interface productImages {
-  description: string;
-  title: string;
-  url: string;
-}
-
 export interface productProps {
-  name: string;
-  ean: string;
-  image: string;
+  id: number;
+  title: string;
+  price: number;
   description: string;
-  price: string;
-  netPrice: number;
-  tags: string[];
-  categories: string[];
-  upc: string;
-  images: productImages[];
+  category: string;
+  image: string;
 }

@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -22,22 +22,19 @@ export const Home: React.FC = () => {
     <Flex flexWrap="wrap">
       {products.length !== 0 ? (
         products.map((product, index) => (
-          <Product
-            key={index}
-            name={product.name}
-            image={product.image}
-            description={product.description}
-            categories={product.categories}
-            ean={product.ean}
-            price={product.price}
-            netPrice={product.netPrice}
-            images={product.images}
-            tags={product.tags}
-            upc={product.ean}
-          />
+          <Box minHeight="10em" key={index}>
+            <Product
+              id={product.id}
+              title={product.title}
+              image={product.image}
+              description={product.description}
+              category={product.category}
+              price={product.price}
+            />
+          </Box>
         ))
       ) : (
-        <Spinner />
+        <Spinner justifySelf="center" alignSelf="center" size="xl" />
       )}
     </Flex>
   );

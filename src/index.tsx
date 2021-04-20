@@ -11,10 +11,19 @@ const theme = extendTheme({
   colors: {
     brand: {
       100: "#E8E9EE",
+      150: "#CCD5FF",
       200: "#5370C6",
       300: "#425BA6",
       400: "#F2DEAA",
       500: "#F2E8CE",
+    },
+  },
+  styles: {
+    global: {
+      body: {
+        minH: "100vh",
+        bg: "brand.100",
+      },
     },
   },
 });
