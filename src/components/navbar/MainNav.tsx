@@ -3,9 +3,21 @@ import { Link } from "react-router-dom";
 import { AuthLinks } from "./AuthLinks";
 import SearchBar from "./SearchBar";
 import { ShopLink } from "./ShopLink";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { fetchCategories } from "../../features/products/productSlice";
+import { useEffect } from "react";
 const MainNav = () => {
-  const categoriesUrls = ["test", "test2", "test3", "test4"];
+  const dispatch = useAppDispatch();
+
+  const categories = useAppSelector((state) => state.product.categories);
+  console.log(categories);
   const salesUrls = ["testsale", "testsale2", "testsale3", "testsale4"];
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, []);
 
   return (
     <Grid
@@ -29,7 +41,7 @@ const MainNav = () => {
         <Flex flexDirection="column">
           <SearchBar />
           <Flex justifyContent="space-around">
-            <ShopLink name="categories" urls={categoriesUrls} />
+            <ShopLink name="categories" urls={categories} />
             <ShopLink name="sales" urls={salesUrls} />
           </Flex>
         </Flex>
