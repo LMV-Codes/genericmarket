@@ -1,4 +1,5 @@
 import { Flex, Grid, GridItem, Heading } from "@chakra-ui/layout";
+import { Link } from "react-router-dom";
 import { AuthLinks } from "./AuthLinks";
 import SearchBar from "./SearchBar";
 import { ShopLink } from "./ShopLink";
@@ -16,10 +17,12 @@ const MainNav = () => {
     >
       <GridItem>
         <Flex justifyContent="center">
-          <Flex flexDir="column">
-            <Heading fontSize="1.5em">Generic</Heading>
-            <Heading fontSize="1.5em">Market</Heading>
-          </Flex>
+          <Link to="/">
+            <Flex flexDir="column">
+              <Heading fontSize="1.5em">Generic</Heading>
+              <Heading fontSize="1.5em">Market</Heading>
+            </Flex>
+          </Link>
         </Flex>
       </GridItem>
       <GridItem>

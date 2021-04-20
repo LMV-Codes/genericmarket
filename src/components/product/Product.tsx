@@ -57,6 +57,7 @@ export const Product: React.FC<productProps> = ({
           variant="outline"
           borderRadius="0"
           borderColor="brand.150"
+          _hover={{ bg: "brand.500" }}
         >
           {isOpen ? (
             <ChevronUpIcon fontSize="2em" />
