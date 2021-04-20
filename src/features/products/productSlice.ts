@@ -13,16 +13,6 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-export const fetchProductById = createAsyncThunk(
-  "products/fetchProductById",
-  async (productId: string, thunkAPI) => {
-    const response = await axios.get(
-      `https://fakestoreapi.com/products/${productId}`
-    );
-    return response.data;
-  }
-);
-
 const productSlice = createSlice({
   name: "products",
   initialState: {
