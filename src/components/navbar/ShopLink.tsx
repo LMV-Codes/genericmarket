@@ -3,13 +3,16 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Box } from "@chakra-ui/layout";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import React from "react";
+import { useAppDispatch } from "../../app/hooks";
 
 interface ShopLinkProps {
   name: string;
   urls: string[];
+  handleDispatch: Function;
 }
 
-export const ShopLink: React.FC<ShopLinkProps> = ({ name, urls }) => {
+export const ShopLink: React.FC<ShopLinkProps> = ({ name, urls, handleDispatch }) => {
+  const dispatch = useAppDispatch()
   return (
     <Menu>
       <MenuButton
@@ -28,7 +31,7 @@ export const ShopLink: React.FC<ShopLinkProps> = ({ name, urls }) => {
       <MenuList>
         {urls.map((url, i) => (
           <Box key={i}>
-            <MenuItem color="brand.200" textTransform="capitalize">
+            <MenuItem color="brand.200" textTransform="capitalize" onClick={() => dispatch(handleDispatch(url))}>
               {url}
             </MenuItem>
           </Box>

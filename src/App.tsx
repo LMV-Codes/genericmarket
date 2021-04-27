@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import React from "react";
 import MainNav from "./components/navbar/MainNav";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";

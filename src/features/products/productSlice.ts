@@ -34,8 +34,13 @@ const productSlice = createSlice({
     products: [],
     errors: {},
     categories: [],
+    selectedCategory: "all",
   },
-  reducers: {},
+  reducers: {
+    selectCategory(state, action) {
+      state.selectedCategory = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
@@ -56,7 +61,7 @@ const productSlice = createSlice({
   },
 });
 
-// export const { productsLoading, productsReceived } = productSlice.actions;
+export const { selectCategory } = productSlice.actions;
 
 const { actions, reducer } = productSlice;
 
