@@ -38,8 +38,8 @@ const productSlice = createSlice({
   },
   reducers: {
     selectCategory(state, action) {
-      state.selectedCategory = action.payload
-    }
+      state.selectedCategory = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
@@ -63,6 +63,6 @@ const productSlice = createSlice({
 
 export const { selectCategory } = productSlice.actions;
 
-const { actions, reducer } = productSlice;
+const { reducer } = productSlice;
 
 export default reducer;
