@@ -26,8 +26,14 @@ export const Home: React.FC = () => {
       {products.length !== 0 ? (
         <ProductList products={products} selectedCategory={selectedCategory} />
       ) : (
-        <Flex justifyContent="center" width="100vh" marginTop="10em">
-          <Spinner justifySelf="center" alignSelf="center" size="xl" />
+        <Flex justifyContent="center" width="100%" marginTop="10em">
+          <Spinner
+            justifySelf="center"
+            alignSelf="center"
+            size="xl"
+            color="brand.200"
+            emptyColor="brand.400"
+          />
         </Flex>
       )}
     </>
