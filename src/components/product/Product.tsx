@@ -6,7 +6,9 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
 import { Collapse } from "@chakra-ui/transition";
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { useAppSelector } from "../../app/hooks";
 import { productProps } from "../../types";
+import { useToast } from "@chakra-ui/react";
 
 export const Product: React.FC<productProps> = ({
   title,
@@ -16,6 +18,21 @@ export const Product: React.FC<productProps> = ({
   category,
 }) => {
   const { isOpen, onToggle } = useDisclosure();
+  const isLogged = useAppSelector((state) => state.user.isLogged);
+  const toast = useToast();
+
+  const handleAddToCart = (isLogged: boolean) => {
+    if (isLogged === false) {
+      return toast({
+        title: "Not logged in",
+        description: "You can't add items to cart if you're not logged in",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
     <Box maxWidth="20em" bg="brand.150" margin="1em">
       <Flex justifyContent="center" alignItems="center" bg="white">
@@ -43,6 +60,7 @@ export const Product: React.FC<productProps> = ({
             rightIcon={<FaShoppingCart />}
             margin="0.5em"
             _hover={{ bg: "brand.300", color: "brand.400" }}
+            onClick={() => handleAddToCart(isLogged)}
           >
             Add to cart
           </Button>

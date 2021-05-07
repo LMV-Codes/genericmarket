@@ -24,6 +24,7 @@ const usersSlice = createSlice({
   initialState: {
     loading: "idle",
     token: "",
+    isLogged: false,
     error: {},
   },
   reducers: {},
@@ -34,6 +35,7 @@ const usersSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.loading = "done";
       state.token = action.payload;
+      state.isLogged = true;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.loading = "done";
