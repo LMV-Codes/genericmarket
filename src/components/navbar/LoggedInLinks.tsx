@@ -9,11 +9,18 @@ import { logout } from "../../features/users/userSlice";
 
 interface userData {}
 
-export const LogedInLinks: React.FC<userData> = () => {
+export const LoggedInLinks: React.FC<userData> = () => {
   const dispatch = useAppDispatch();
   return (
     <Flex alignItems="center">
-      <Button onClick={() => dispatch(logout)}>Logout</Button>
+      <Button
+        variant="outline"
+        borderColor="orange"
+        color="orange"
+        onClick={() => dispatch(logout)}
+      >
+        Logout
+      </Button>
       <IconButton
         marginLeft="1em"
         variant="outline"

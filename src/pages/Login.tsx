@@ -3,7 +3,7 @@ import { Container, Flex, Heading } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { Form, Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import * as Yup from "yup";
 import { useAppDispatch } from "../app/hooks";
@@ -24,7 +24,6 @@ export const Login: React.FC = () => {
       .max(100, "Password is too long")
       .required("Password is required"),
   });
-  const [randomUP, setRandomUP] = useState({ username: "", password: "" });
 
   const toast = useToast();
 

@@ -9,13 +9,15 @@ import {
   selectCategory,
 } from "../../features/products/productSlice";
 import { useEffect } from "react";
-import { LogedInLinks } from "./LogedInLinks";
+import { LoggedInLinks } from "./LoggedInLinks";
 
 const MainNav = () => {
   const dispatch = useAppDispatch();
+
   const isLogged = useAppSelector((state) => state.user.isLogged);
+
   const categories = useAppSelector((state) => state.product.categories);
-  console.log(isLogged);
+
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(fetchCategories());
@@ -55,7 +57,7 @@ const MainNav = () => {
       </GridItem>
       <GridItem>
         {isLogged ? (
-          <LogedInLinks />
+          <LoggedInLinks />
         ) : (
           <AuthLinks loginUrl="/login" registerUrl="/register" />
         )}
