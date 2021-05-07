@@ -4,11 +4,11 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { ProductList } from "../components/product/ProductList";
 import { fetchProducts } from "../features/products/productSlice";
-import { productProps } from "../types";
+import { ProductProps } from "../types";
 
 export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
-  const products: productProps[] = useAppSelector(
+  const products: ProductProps[] = useAppSelector(
     (state) => state.product.products
   );
   const selectedCategory = useAppSelector(

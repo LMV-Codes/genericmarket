@@ -1,10 +1,10 @@
 import { Box, Flex } from "@chakra-ui/layout";
 import React from "react";
-import { productProps } from "../../types";
+import { ProductProps } from "../../types";
 import { Product } from "./Product";
 
 interface ProductListProps {
-  products: productProps[];
+  products: ProductProps[];
   selectedCategory: string;
 }
 
@@ -13,7 +13,7 @@ export const ProductList: React.FC<ProductListProps> = ({
   selectedCategory,
 }) => {
   const productsInCategory = (
-    productList: productProps[],
+    productList: ProductProps[],
     category: string
   ) => {
     const productsFromCategory = productList.filter(

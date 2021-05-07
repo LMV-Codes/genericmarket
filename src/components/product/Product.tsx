@@ -7,10 +7,10 @@ import { Collapse } from "@chakra-ui/transition";
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useAppSelector } from "../../app/hooks";
-import { productProps } from "../../types";
+import { ProductProps } from "../../types";
 import { useToast } from "@chakra-ui/react";
 
-export const Product: React.FC<productProps> = ({
+export const Product: React.FC<ProductProps> = ({
   title,
   description,
   image,
