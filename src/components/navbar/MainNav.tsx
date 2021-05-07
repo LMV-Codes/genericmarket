@@ -4,22 +4,23 @@ import { AuthLinks } from "./AuthLinks";
 import SearchBar from "./SearchBar";
 import { ShopLink } from "./ShopLink";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { fetchCategories, selectCategory } from "../../features/products/productSlice";
+import {
+  fetchCategories,
+  selectCategory,
+} from "../../features/products/productSlice";
 import { useEffect } from "react";
+import { LogedInLinks } from "./LogedInLinks";
+
 const MainNav = () => {
   const dispatch = useAppDispatch();
-
+  const isLogged = useAppSelector((state) => state.user.isLogged);
   const categories = useAppSelector((state) => state.product.categories);
-  console.log(categories);
-  const salesUrls = ["testsale", "testsale2", "testsale3", "testsale4"];
-
+  console.log(isLogged);
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(fetchCategories());
     }
   }, []);
-
-  
 
   return (
     <Grid
@@ -43,13 +44,21 @@ const MainNav = () => {
         <Flex flexDirection="column">
           <SearchBar />
           <Flex justifyContent="space-around">
-            <ShopLink name="categories" urls={categories} handleDispatch={selectCategory}/>
+            <ShopLink
+              name="categories"
+              urls={categories}
+              handleDispatch={selectCategory}
+            />
             {/* <ShopLink name="sales" urls={salesUrls} /> */}
           </Flex>
         </Flex>
       </GridItem>
       <GridItem>
-        <AuthLinks loginUrl="/login" registerUrl="/register" />
+        {isLogged ? (
+          <LogedInLinks />
+        ) : (
+          <AuthLinks loginUrl="/login" registerUrl="/register" />
+        )}
       </GridItem>
     </Grid>
   );
