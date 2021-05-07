@@ -6,11 +6,13 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
 import { Collapse } from "@chakra-ui/transition";
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { ProductProps } from "../../types";
 import { useToast } from "@chakra-ui/react";
+import { addProduct } from "../../features/cart/cartSlice";
 
 export const Product: React.FC<ProductProps> = ({
+  id,
   title,
   description,
   image,
@@ -18,8 +20,14 @@ export const Product: React.FC<ProductProps> = ({
   category,
 }) => {
   const { isOpen, onToggle } = useDisclosure();
+
   const isLogged = useAppSelector((state) => state.user.isLogged);
+
   const toast = useToast();
+
+  const dispatch = useAppDispatch();
+
+  const product = { id, title, description, image, price, category };
 
   const handleAddToCart = (isLogged: boolean) => {
     if (isLogged === false) {
@@ -30,6 +38,8 @@ export const Product: React.FC<ProductProps> = ({
         duration: 5000,
         isClosable: true,
       });
+    } else {
+      dispatch(addProduct(product));
     }
   };
 
