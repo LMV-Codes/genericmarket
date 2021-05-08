@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { Cart } from "../components/cart/Cart";
 import { ProductList } from "../components/product/ProductList";
 import { fetchProducts } from "../features/products/productSlice";
 import { ProductProps } from "../types";
@@ -15,6 +16,8 @@ export const Home: React.FC = () => {
     (state) => state.product.selectedCategory
   );
 
+  const showCart = useAppSelector((state) => state.cart.showCart);
+
   useEffect(() => {
     if (products.length === 0) {
       dispatch(fetchProducts());
@@ -23,6 +26,7 @@ export const Home: React.FC = () => {
 
   return (
     <>
+      {showCart && <Cart />}
       {products.length !== 0 ? (
         <ProductList products={products} selectedCategory={selectedCategory} />
       ) : (

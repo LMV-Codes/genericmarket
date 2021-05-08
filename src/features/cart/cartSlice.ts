@@ -4,9 +4,14 @@ import { ProductProps } from "../../types";
 interface CartState {
   products: Array<ProductProps>;
   itemAmount: number;
+  showCart: boolean;
 }
 
-const initialState: CartState = { products: [], itemAmount: 0 };
+const initialState: CartState = {
+  products: [],
+  itemAmount: 0,
+  showCart: false,
+};
 
 const cartSlice = createSlice({
   name: "cart",
@@ -16,11 +21,14 @@ const cartSlice = createSlice({
       cart.products.push(action.payload);
       cart.itemAmount++;
     },
+    showCart(cart, action) {
+      cart.showCart = !cart.showCart;
+    },
   },
 });
 
 const { reducer } = cartSlice;
 
-export const { addProduct } = cartSlice.actions;
+export const { addProduct, showCart } = cartSlice.actions;
 
 export default reducer;

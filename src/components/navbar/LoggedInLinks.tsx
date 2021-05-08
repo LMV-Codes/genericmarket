@@ -6,10 +6,9 @@ import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useAppDispatch } from "../../app/hooks";
 import { logout } from "../../features/users/userSlice";
+import { showCart } from "../../features/cart/cartSlice";
 
-interface userData {}
-
-export const LoggedInLinks: React.FC<userData> = () => {
+export const LoggedInLinks: React.FC = () => {
   const dispatch = useAppDispatch();
   return (
     <Flex alignItems="center">
@@ -27,6 +26,7 @@ export const LoggedInLinks: React.FC<userData> = () => {
         aria-label="shopping-cart"
         _hover={{ bg: "brand.400", color: "brand.200" }}
         icon={<Icon as={FaShoppingCart} />}
+        onClick={() => dispatch(showCart(true))}
       />
     </Flex>
   );

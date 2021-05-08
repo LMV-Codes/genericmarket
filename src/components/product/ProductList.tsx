@@ -23,7 +23,7 @@ export const ProductList: React.FC<ProductListProps> = ({
   };
   const filteredProducts = productsInCategory(products, selectedCategory);
   return (
-    <Flex flexWrap="wrap">
+    <Flex flexWrap="wrap" justifyContent="center">
       {filteredProducts.length !== 0
         ? filteredProducts.map((product, index) => (
             <Box minHeight="10em" key={index}>
