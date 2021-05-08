@@ -40,6 +40,12 @@ export const Product: React.FC<ProductProps> = ({
       });
     } else {
       dispatch(addProduct(product));
+      toast({
+        title: "Item added to cart",
+        status: "info",
+        duration: 1000,
+        isClosable: true,
+      });
     }
   };
 
