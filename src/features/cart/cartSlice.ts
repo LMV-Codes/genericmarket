@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductProps } from "../../types";
 
+interface ProductInCart {
+  amount: number;
+  product: ProductProps;
+}
+
 interface CartState {
-  products: Array<ProductProps>;
+  products: ProductInCart[];
   itemAmount: number;
   showCart: boolean;
 }
@@ -17,7 +22,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProduct(cart, action: PayloadAction<ProductProps>) {
+    addProduct(cart, action: PayloadAction<ProductInCart>) {
       cart.products.push(action.payload);
       cart.itemAmount++;
     },

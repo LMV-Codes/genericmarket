@@ -14,8 +14,8 @@ export const Cart: React.FC = () => {
             <Box maxWidth="20em" bg="brand.150" margin="1em" key={index}>
               <Flex justifyContent="center" alignItems="center" bg="white">
                 <Image
-                  src={product.image}
-                  alt={product.title}
+                  src={product.product.image}
+                  alt={product.product.title}
                   boxSize="20em"
                   objectFit="contain"
                 />
@@ -26,13 +26,13 @@ export const Cart: React.FC = () => {
                 alignItems="center"
               >
                 <Heading as="h4" size="md">
-                  {product.title}
+                  {product.product.title}
                 </Heading>
                 <Heading as="h4" size="md">
                   {new Intl.NumberFormat("en-EN", {
                     style: "currency",
                     currency: "USD",
-                  }).format(product.price)}
+                  }).format(product.product.price)}
                 </Heading>
               </Flex>
             </Box>
