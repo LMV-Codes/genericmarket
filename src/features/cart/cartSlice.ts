@@ -1,12 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductProps } from "../../types";
 
+interface ActionAmount {
+  amount: number;
+  indexOf: number;
+}
+
 interface ProductInCart {
   amount: number;
   product: ProductProps;
 }
 
-interface CartState {
+export interface CartState {
   products: ProductInCart[];
   itemAmount: number;
   showCart: boolean;
@@ -26,6 +31,10 @@ const cartSlice = createSlice({
       cart.products.push(action.payload);
       cart.itemAmount++;
     },
+    changeAmount(cart, action: PayloadAction<ActionAmount>) {
+      cart.products[action.payload.indexOf].amount =
+        cart.products[action.payload.indexOf].amount + action.payload.amount;
+    },
     showCart(cart, action) {
       cart.showCart = !cart.showCart;
     },
@@ -34,6 +43,6 @@ const cartSlice = createSlice({
 
 const { reducer } = cartSlice;
 
-export const { addProduct, showCart } = cartSlice.actions;
+export const { addProduct, showCart, changeAmount } = cartSlice.actions;
 
 export default reducer;
