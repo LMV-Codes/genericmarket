@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import {
   Box,
@@ -9,10 +10,21 @@ import {
   Text,
 } from "@chakra-ui/layout";
 import React from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { removeFromCart } from "../../features/cart/cartSlice";
+import { ProductInCart } from "../../features/cart/cartSlice";
 
 export const Cart: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const cart = useAppSelector((state) => state.cart.products);
+
+  const getIndexOfProduct = (
+    products: Array<ProductInCart>,
+    product: ProductInCart
+  ) => {
+    return products.findIndex((p) => p.product.id === product.product.id);
+  };
   return (
     <Box
       position="absolute"
@@ -83,6 +95,14 @@ export const Cart: React.FC = () => {
                   </Heading>
                 </GridItem>
               </Grid>
+              <Button
+                colorScheme="red"
+                onClick={() =>
+                  dispatch(removeFromCart(getIndexOfProduct(cart, cartItem)))
+                }
+              >
+                Remove from cart
+              </Button>
             </Flex>
           ))}
         </Flex>

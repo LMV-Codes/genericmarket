@@ -6,7 +6,7 @@ interface ActionAmount {
   indexOf: number;
 }
 
-interface ProductInCart {
+export interface ProductInCart {
   amount: number;
   product: ProductProps;
 }
@@ -38,11 +38,15 @@ const cartSlice = createSlice({
     showCart(cart, action) {
       cart.showCart = !cart.showCart;
     },
+    removeFromCart(cart, action) {
+      cart.products.splice(action.payload, 1);
+    },
   },
 });
 
 const { reducer } = cartSlice;
 
-export const { addProduct, showCart, changeAmount } = cartSlice.actions;
+export const { addProduct, showCart, changeAmount, removeFromCart } =
+  cartSlice.actions;
 
 export default reducer;
