@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/button";
+import { CloseIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/image";
 import {
   Box,
@@ -13,7 +14,8 @@ import { useToast } from "@chakra-ui/toast";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { removeFromCart } from "../../features/cart/cartSlice";
-import { ProductInCart } from "../../features/cart/cartSlice";
+import { ProductInCart, showCart } from "../../features/cart/cartSlice";
+
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
 
@@ -46,8 +48,26 @@ export const Cart: React.FC = () => {
       bg="rgba(150,150,150,0.6)"
       height="100%"
       width="100%"
+      top={0}
+      left={0}
     >
-      <Container maxWidth="container.xl" bg="brand.100" minHeight="100vh">
+      <Container
+        maxWidth="container.xl"
+        bg="brand.100"
+        minHeight="100vh"
+        marginTop="5em"
+      >
+        <Flex>
+          <CloseIcon
+            marginTop="1em"
+            onClick={() => dispatch(showCart(false))}
+            marginLeft="auto"
+            marginRight="1em"
+            color="gray.500"
+            _hover={{ color: "black" }}
+            cursor="pointer"
+          />
+        </Flex>
         <Heading textAlign="center">Your Cart</Heading>
         <Flex flexWrap="wrap" justifyContent="center">
           {cart.map((cartItem, index) => (
