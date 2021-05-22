@@ -16,7 +16,7 @@ export const LoggedInLinks: React.FC = () => {
         variant="outline"
         borderColor="orange"
         color="orange"
-        onClick={() => dispatch(logout)}
+        onClick={() => dispatch(logout(false))}
       >
         Logout
       </Button>

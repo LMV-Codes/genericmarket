@@ -29,7 +29,7 @@ const usersSlice = createSlice({
   },
   reducers: {
     logout(user, action) {
-      user.isLogged = false;
+      user.isLogged = action.payload;
       user.token = "";
     },
   },
