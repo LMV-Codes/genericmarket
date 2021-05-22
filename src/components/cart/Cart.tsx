@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { CloseIcon } from "@chakra-ui/icons";
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/image";
 import {
   Box,
@@ -161,6 +161,15 @@ export const Cart: React.FC = () => {
             }).format(getTotalFromCart(cart))}
           </Heading>
         )}
+        <Flex justifyContent="center" marginTop="2em">
+          <Button
+            variant="outline"
+            colorScheme="green"
+            rightIcon={<CheckIcon />}
+          >
+            Go to Checkout
+          </Button>
+        </Flex>
       </Container>
     </Box>
   );
