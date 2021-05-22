@@ -33,7 +33,7 @@ const cartSlice = createSlice({
     },
     changeAmount(cart, action: PayloadAction<ActionAmount>) {
       cart.products[action.payload.indexOf].amount =
-        cart.products[action.payload.indexOf].amount + action.payload.amount;
+        +cart.products[action.payload.indexOf].amount + +action.payload.amount;
     },
     showCart(cart, action) {
       cart.showCart = !cart.showCart;
