@@ -9,15 +9,17 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/layout";
+import { useToast } from "@chakra-ui/toast";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { removeFromCart } from "../../features/cart/cartSlice";
 import { ProductInCart } from "../../features/cart/cartSlice";
-
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const cart = useAppSelector((state) => state.cart.products);
+
+  const toast = useToast();
 
   const getIndexOfProduct = (
     products: Array<ProductInCart>,
@@ -25,6 +27,18 @@ export const Cart: React.FC = () => {
   ) => {
     return products.findIndex((p) => p.product.id === product.product.id);
   };
+
+  const dispatchRemoveItem = (cartItem: ProductInCart) => {
+    const index = getIndexOfProduct(cart, cartItem);
+    dispatch(removeFromCart(index));
+    toast({
+      title: "Item removed from cart",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
   return (
     <Box
       position="absolute"
@@ -97,9 +111,7 @@ export const Cart: React.FC = () => {
               </Grid>
               <Button
                 colorScheme="red"
-                onClick={() =>
-                  dispatch(removeFromCart(getIndexOfProduct(cart, cartItem)))
-                }
+                onClick={() => dispatchRemoveItem(cartItem)}
               >
                 Remove from cart
               </Button>
