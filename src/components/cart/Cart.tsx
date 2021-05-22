@@ -41,6 +41,16 @@ export const Cart: React.FC = () => {
     });
   };
 
+  const getTotalFromCart = (productArray: Array<ProductInCart>) => {
+    let sumTotal = 0;
+    productArray.forEach(
+      (product) =>
+        (sumTotal = sumTotal + product.product.price * product.amount)
+    );
+
+    return sumTotal;
+  };
+
   return (
     <Box
       position="absolute"
@@ -138,6 +148,19 @@ export const Cart: React.FC = () => {
             </Flex>
           ))}
         </Flex>
+        {cart.length === 0 ? (
+          <Heading textAlign="center" marginTop="3em">
+            No Items in Cart
+          </Heading>
+        ) : (
+          <Heading textAlign="center" marginTop="2em">
+            Total:
+            {new Intl.NumberFormat("en-EN", {
+              style: "currency",
+              currency: "USD",
+            }).format(getTotalFromCart(cart))}
+          </Heading>
+        )}
       </Container>
     </Box>
   );
