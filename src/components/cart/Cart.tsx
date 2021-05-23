@@ -43,16 +43,6 @@ export const Cart: React.FC = () => {
     });
   };
 
-  const getTotalFromCart = (productArray: Array<ProductInCart>) => {
-    let sumTotal = 0;
-    productArray.forEach(
-      (product) =>
-        (sumTotal = sumTotal + product.product.price * product.amount)
-    );
-
-    return sumTotal;
-  };
-
   const formatTotalAmount = (price: number) => {
     return new Intl.NumberFormat("en-EN", {
       style: "currency",
@@ -171,6 +161,7 @@ export const Cart: React.FC = () => {
             variant="outline"
             colorScheme="green"
             rightIcon={<CheckIcon />}
+            marginBottom="2em"
           >
             Go to Checkout
           </Button>
