@@ -15,11 +15,13 @@ export interface CartState {
   products: ProductInCart[];
   itemAmount: number;
   showCart: boolean;
+  totalPrice: number;
 }
 
 const initialState: CartState = {
   products: [],
   itemAmount: 0,
+  totalPrice: 0,
   showCart: false,
 };
 
@@ -29,7 +31,9 @@ const cartSlice = createSlice({
   reducers: {
     addProduct(cart, action: PayloadAction<ProductInCart>) {
       cart.products.push(action.payload);
-      cart.itemAmount++;
+      cart.itemAmount = cart.itemAmount + action.payload.amount;
+      cart.totalPrice =
+        cart.totalPrice + action.payload.product.price * action.payload.amount;
     },
     changeAmount(cart, action: PayloadAction<ActionAmount>) {
       cart.products[action.payload.indexOf].amount =

@@ -21,6 +21,8 @@ export const Cart: React.FC = () => {
 
   const cart = useAppSelector((state) => state.cart.products);
 
+  const totalPrice = useAppSelector((state) => state.cart.totalPrice);
+
   const toast = useToast();
 
   const getIndexOfProduct = (
@@ -51,11 +53,11 @@ export const Cart: React.FC = () => {
     return sumTotal;
   };
 
-  const formatTotalAmount = (price: number, amount: number) => {
+  const formatTotalAmount = (price: number) => {
     return new Intl.NumberFormat("en-EN", {
       style: "currency",
       currency: "USD",
-    }).format(price * amount);
+    }).format(price);
   };
 
   return (
@@ -139,7 +141,9 @@ export const Cart: React.FC = () => {
                 </GridItem>
                 <GridItem>
                   <Heading as="h4" size="md" textAlign="center">
-                    {formatTotalAmount(cartItem.product.price, cartItem.amount)}
+                    {formatTotalAmount(
+                      cartItem.product.price * cartItem.amount
+                    )}
                   </Heading>
                 </GridItem>
               </Grid>
@@ -159,10 +163,7 @@ export const Cart: React.FC = () => {
         ) : (
           <Heading textAlign="center" marginTop="2em">
             Total:
-            {new Intl.NumberFormat("en-EN", {
-              style: "currency",
-              currency: "USD",
-            }).format(getTotalFromCart(cart))}
+            {formatTotalAmount(totalPrice)}
           </Heading>
         )}
         <Flex justifyContent="center" marginTop="2em">
