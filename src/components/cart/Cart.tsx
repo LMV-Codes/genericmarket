@@ -51,6 +51,13 @@ export const Cart: React.FC = () => {
     return sumTotal;
   };
 
+  const formatTotalAmount = (price: number, amount: number) => {
+    return new Intl.NumberFormat("en-EN", {
+      style: "currency",
+      currency: "USD",
+    }).format(price * amount);
+  };
+
   return (
     <Box
       position="absolute"
@@ -132,10 +139,7 @@ export const Cart: React.FC = () => {
                 </GridItem>
                 <GridItem>
                   <Heading as="h4" size="md" textAlign="center">
-                    {new Intl.NumberFormat("en-EN", {
-                      style: "currency",
-                      currency: "USD",
-                    }).format(cartItem.product.price * cartItem.amount)}
+                    {formatTotalAmount(cartItem.product.price, cartItem.amount)}
                   </Heading>
                 </GridItem>
               </Grid>
