@@ -4,6 +4,7 @@ import React from "react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { showCheckout } from "../../features/cart/cartSlice";
+import { CheckoutForm } from "./CheckoutForm";
 
 export const Checkout: React.FC = () => {
   const formatTotalAmount = (price: number) => {
@@ -44,9 +45,10 @@ export const Checkout: React.FC = () => {
             cursor="pointer"
           />
         </Flex>
-        <Heading size="lg">
-          Your total amounts to {formatTotalAmount(totalPrice)}
+        <Heading size="lg" textAlign="center">
+          Your cart total is {formatTotalAmount(totalPrice)}
         </Heading>
+        <CheckoutForm />
       </Container>
     </Box>
   );
