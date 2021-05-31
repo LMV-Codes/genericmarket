@@ -15,6 +15,7 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { removeFromCart } from "../../features/cart/cartSlice";
 import { ProductInCart, showCart } from "../../features/cart/cartSlice";
+import { CartItems } from "./CartItems";
 
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -78,74 +79,7 @@ export const Cart: React.FC = () => {
           />
         </Flex>
         <Heading textAlign="center">Your Cart</Heading>
-        <Flex flexWrap="wrap" justifyContent="center">
-          {cart.map((cartItem, index) => (
-            <Flex
-              maxWidth="20em"
-              bg="brand.150"
-              margin="1em"
-              key={index}
-              flexDirection="column"
-              borderRadius="5px"
-            >
-              <Flex justifyContent="center" alignItems="center" bg="white">
-                <Image
-                  src={cartItem.product.image}
-                  alt={cartItem.product.title}
-                  boxSize="15em"
-                  objectFit="contain"
-                />
-              </Flex>
-              <Grid
-                templateRows="1fr 1fr 1fr"
-                templateColumns="7fr 1fr 2fr"
-                columnGap={3}
-                rowGap={0}
-                alignItems="center"
-                padding="0.5em"
-              >
-                <GridItem height="1em">
-                  <Text fontSize="xs" textAlign="center">
-                    Item
-                  </Text>
-                </GridItem>
-                <GridItem height="1em">
-                  <Text fontSize="xs" textAlign="center">
-                    Amount
-                  </Text>
-                </GridItem>
-                <GridItem height="1em">
-                  <Text fontSize="xs" textAlign="center">
-                    Total
-                  </Text>
-                </GridItem>
-                <GridItem height="2em">
-                  <Heading as="h4" size="sm" textAlign="center">
-                    {cartItem.product.title}
-                  </Heading>
-                </GridItem>
-                <GridItem>
-                  <Heading as="h4" size="md" textAlign="center">
-                    {cartItem.amount}
-                  </Heading>
-                </GridItem>
-                <GridItem>
-                  <Heading as="h4" size="md" textAlign="center">
-                    {formatTotalAmount(
-                      cartItem.product.price * cartItem.amount
-                    )}
-                  </Heading>
-                </GridItem>
-              </Grid>
-              <Button
-                colorScheme="red"
-                onClick={() => dispatchRemoveItem(cartItem)}
-              >
-                Remove from cart
-              </Button>
-            </Flex>
-          ))}
-        </Flex>
+        <CartItems />
         {cart.length === 0 ? (
           <Heading textAlign="center" marginTop="3em">
             No Items in Cart
