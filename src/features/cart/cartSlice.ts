@@ -16,6 +16,7 @@ export interface CartState {
   itemAmount: number;
   showCart: boolean;
   totalPrice: number;
+  showCheckout: boolean;
 }
 
 const initialState: CartState = {
@@ -23,6 +24,7 @@ const initialState: CartState = {
   itemAmount: 0,
   totalPrice: 0,
   showCart: false,
+  showCheckout: false,
 };
 
 const cartSlice = createSlice({
@@ -40,17 +42,25 @@ const cartSlice = createSlice({
         +cart.products[action.payload.indexOf].amount + +action.payload.amount;
     },
     showCart(cart, action) {
-      cart.showCart = !cart.showCart;
+      cart.showCart = action.payload;
     },
     removeFromCart(cart, action) {
       cart.products.splice(action.payload, 1);
+    },
+    showCheckout(cart, action) {
+      cart.showCheckout = action.payload;
     },
   },
 });
 
 const { reducer } = cartSlice;
 
-export const { addProduct, showCart, changeAmount, removeFromCart } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  showCart,
+  changeAmount,
+  removeFromCart,
+  showCheckout,
+} = cartSlice.actions;
 
 export default reducer;

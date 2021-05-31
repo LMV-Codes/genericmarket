@@ -3,7 +3,7 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { Box, Container, Flex, Heading } from "@chakra-ui/layout";
 import React from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { showCart } from "../../features/cart/cartSlice";
+import { showCart, showCheckout } from "../../features/cart/cartSlice";
 import { CartItems } from "./CartItems";
 import { CartTotalAmount } from "./CartTotalAmount";
 
@@ -46,6 +46,7 @@ export const Cart: React.FC = () => {
             colorScheme="green"
             rightIcon={<CheckIcon />}
             marginBottom="2em"
+            onClick={() => dispatch(showCheckout(true))}
           >
             Go to Checkout
           </Button>
